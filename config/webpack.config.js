@@ -110,6 +110,12 @@ module.exports = function (webpackEnv) {
       },
     ].filter(Boolean)
     if (preProcessor) {
+      // if (preProcessor === 'less-loader') {
+      //   loaders.options.modifyVars = {
+      //     'primary-color': 'yellow',
+      //   }
+      //   loaders.options.javascriptEnabled = true
+      // }
       loaders.push(
         {
           loader: require.resolve('resolve-url-loader'),

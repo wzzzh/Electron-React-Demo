@@ -1,35 +1,54 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Menu } from 'antd'
-import './index.less'
+import { Link } from 'react-router-dom'
 
-const { SubMenu } = Menu
-const Sidebar = () => {
+import './index.less'
+const menuList = [
+  {
+    title: '窗口管理',
+    url: '/window',
+  },
+  {
+    title: '系统弹框',
+    url: '/dialog',
+  },
+]
+const Sidebar = (props) => {
+  const [defaultKey, setDefaultKey] = useState([''])
+  useEffect(() => {
+    let pathName = window.location.pathname
+    let current = menuList.filter((e) => e.url === pathName)
+    let currentKey = current[0]['title']
+    setDefaultKey([currentKey])
+  }, [])
+
+  const handleClick = (e) => {
+    setDefaultKey([e.title])
+  }
   return (
     <div className='siderbar-container'>
-      <div className='side-top'>Electron React Demo</div>
+      <div className='side-top'>
+        <span>Electron React Demo</span>
+      </div>
       <Menu
-        // onClick={this.handleClick}
         style={{ width: 256, height: '100vh' }}
         defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
+        selectedKeys={defaultKey}
         mode='inline'
+        theme='dark'
       >
-        <Menu.Item key='1'>窗口管理</Menu.Item>
-
-        {/* <SubMenu
-          key='sub2'
-          title={
-            <span>
-              <SettingOutlined />
-              <span>Navigation Two</span>
-            </span>
-          }
-        >
-          <Menu.Item key='5'>Option 9</Menu.Item>
-          <Menu.Item key='6'>Option 10</Menu.Item>
-          <Menu.Item key='7'>Option 11</Menu.Item>
-          <Menu.Item key='8'>Option 12</Menu.Item>
-        </SubMenu> */}
+        {menuList.map((e, index) => {
+          return (
+            <Menu.Item
+              key={e.title}
+              onClick={() => {
+                handleClick(e)
+              }}
+            >
+              <Link to={e.url}>{e.title}</Link>
+            </Menu.Item>
+          )
+        })}
       </Menu>
     </div>
   )

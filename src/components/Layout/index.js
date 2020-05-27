@@ -7,7 +7,9 @@ class Layout extends Component {
     super(props)
   }
 
-  state = {}
+  state = {
+    visible: false,
+  }
 
   render() {
     return (
