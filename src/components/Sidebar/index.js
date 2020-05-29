@@ -5,12 +5,28 @@ import { Link } from 'react-router-dom'
 import './index.less'
 const menuList = [
   {
+    title: '进程通信',
+    url: '/ipc',
+  },
+  {
     title: '窗口管理',
     url: '/window',
   },
   {
     title: '系统弹框',
     url: '/dialog',
+  },
+  {
+    title: '系统菜单',
+    url: '/menu',
+  },
+  {
+    title: 'Shell',
+    url: '/shell',
+  },
+  {
+    title: 'Todolist',
+    url: '/todolist',
   },
 ]
 const Sidebar = (props) => {
