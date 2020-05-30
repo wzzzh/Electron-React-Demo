@@ -21,6 +21,10 @@ const menuList = [
     url: '/menu',
   },
   {
+    title: '系统操作',
+    url: '/system',
+  },
+  {
     title: 'Shell',
     url: '/shell',
   },

@@ -1,5 +1,15 @@
 import React from 'react'
+import OutLink from 'components/OutLink'
+import './index.less'
 const ProMenu = () => {
-  return <div>菜单</div>
+  const outLinkOpt = {
+    url: 'https://www.electronjs.org/docs/api/menu',
+    title: 'Menu',
+  }
+  return (
+    <div className='menu-container'>
+      <OutLink outLinkOpt={outLinkOpt}></OutLink>
+    </div>
+  )
 }
 export default ProMenu

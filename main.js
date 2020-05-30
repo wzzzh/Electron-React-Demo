@@ -2,16 +2,19 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 const glob = require('glob')
 const debug = /--debug/.test(process.argv[2])
+require('./main-process/menu/rightMenu')
+require('./main-process/menu/topMenu')
 // console.log(app)
 let mainWindow
 function initialize() {
   makeSingleInstance()
-  loadMainProcess()
+
   // Electron 会在初始化后并准备
   // 创建浏览器窗口时，调用这个函数。
   // 部分 API 在 ready 事件触发后才能使用。
   app.on('ready', () => {
     createWindow()
+    loadMainProcess()
   })
 
   // 当全部窗口关闭时退出。
@@ -35,8 +38,10 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    title: 'Electron-React',
     webPreferences: {
       nodeIntegration: true,
+      enableRemoteModule: true,
     },
   })
 
